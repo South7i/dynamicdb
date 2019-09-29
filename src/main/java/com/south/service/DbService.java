@@ -5,8 +5,14 @@ import com.south.model.entity.dbtwo.SysTwo;
 
 public interface DbService {
 
-     SysUserOne getUser(long id);
+     SysUserOne selectUser(long id);
 
-    SysTwo getTwo(long id);
+    SysTwo selectTwo(long id);
+
+    int insertUser(SysUserOne sysUserOne);
+
+    int insertTwo(SysTwo sysTwo);
+
+
 
 }

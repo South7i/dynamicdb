@@ -6,7 +6,7 @@ import com.south.dao.SysUserOneDao;
 import com.south.model.entity.dbone.SysUserOne;
 import com.south.model.entity.dbtwo.SysTwo;
 import com.south.service.DbService;
-import com.south.system.datasource.DynamicDataSourceContextHolder;
+import com.south.system.annotation.DB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +24,26 @@ public class DbServiceImpl implements DbService {
     @Autowired
     private SysTwoDao sysTwoDao;
 
-
+    @DB
     @Override
-    public SysUserOne getUser(long id) {
+    public SysUserOne selectUser(long id) {
         return sysUserOneDao.selectById(id);
     }
 
+    @DB(DataSourceType.DB2)
     @Override
-    public SysTwo getTwo(long id) {
-        //手动切换数据源
-        DynamicDataSourceContextHolder.setDataSourceType(DataSourceType.DB2.name());
+    public SysTwo selectTwo(long id) {
         return sysTwoDao.selectById(id);
+    }
+
+    @Override
+    public int insertUser(SysUserOne sysUserOne) {
+        return sysUserOneDao.insert(sysUserOne);
+    }
+
+    @DB(DataSourceType.DB2)
+    @Override
+    public int insertTwo(SysTwo sysTwo) {
+        return sysTwoDao.insert(sysTwo);
     }
 }

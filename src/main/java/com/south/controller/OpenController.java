@@ -18,11 +18,12 @@ public class OpenController extends BaseController {
 
     @GetMapping("/open2")
     public Object login(){
-        return  dbService.getTwo(1);
+        return  dbService.selectTwo(1);
     }
 
     @GetMapping("/open")
     public Object login1(){
-        return dbService.getUser(1);
+        return dbService.selectUser(1);
     }
+    
 }
