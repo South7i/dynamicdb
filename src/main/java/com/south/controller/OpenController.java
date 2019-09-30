@@ -25,5 +25,5 @@ public class OpenController extends BaseController {
     public Object login1(){
         return dbService.selectUser(1);
     }
-    
+
 }
